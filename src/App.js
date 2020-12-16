@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     card: {
@@ -30,6 +30,12 @@ const unlikeJoke = (id) => {
     console.log("uliking joke, " + id);
 }
 
+const Category = withStyles({
+    root: {
+        marginTop: 10,
+        marginBottom: 10
+    }
+})(Chip)
 
 function App() {
 
@@ -65,20 +71,18 @@ function App() {
                 {
                     joke.categories.length > 0 ? (
                         joke.categories.map(cat => ( <
-                            Chip label = { cat }
+                            Category label = { cat }
                             key = { cat }
                             variant = "outlined"
-                            style = {
-                                { marginTop: 10, marginBottom: 10 }
-                            }
-                            / >
+
+                            /
+                            >
                         ))
-                    ) : < Chip label = "Not Categorized"
+                    ) : < Category label = "Not Categorized"
                     variant = "outlined"
-                    style = {
-                        { marginTop: 10, marginBottom: 10 }
-                    }
-                    / >
+
+                    /
+                    >
                 }
 
                 <
