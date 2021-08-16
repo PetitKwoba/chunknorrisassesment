@@ -52,70 +52,38 @@ function App() {
             .catch((err) => console.log(err));
     }, []);
 
-    return ( <
-            div className = "App" >
-            <
-            CssBaseline / >
-            <
-            Container >
-            <
-            Typography variant = "h1"
-            align = "center" >
-            Chuck Norris jokes <
-            /Typography>  {
-            jokes.map(joke => ( <
-                Card key = { joke.id }
-                className = { classes.card } > <
-                CardContent className = { classes.CardContent } >
+    return ( 
+        <div className = "App" >
+        <CssBaseline />
+        <Container>
+            <Typography variant = "h1" align = "center" > Chuck Norris jokes </Typography>  
+                { jokes.map(joke => ( 
+                    < Card key = { joke.id } className = { classes.card } > 
+                        <CardContent className = { classes.CardContent } >
+                            {joke.categories.length > 0 ? (
+                                joke.categories.map(cat => ( 
+                                < Category label = { cat } key = { cat } variant = "outlined" /> ))
+                                    ) : < Category label = "Regular"
+                                    variant = "outlined"/>
+                                }
+                    
+                            < Typography > { joke.joke } </Typography> 
 
-                {
-                    joke.categories.length > 0 ? (
-                        joke.categories.map(cat => ( <
-                            Category label = { cat }
-                            key = { cat }
-                            variant = "outlined"
+                        </CardContent >
+                            <CardActions className = { classes.CardActions } >
+                                <Button variant = "contained" color = "primary"onClick = {() => likeJoke(joke.id)}>
+                                    like 
+                                </Button> 
 
-                            /
-                            >
-                        ))
-                    ) : < Category label = "Not Categorized"
-                    variant = "outlined"
-
-                    /
-                    >
-                }
-
-                <
-                Typography > { joke.joke } < /Typography> < /
-                CardContent >
-                <
-                CardActions className = { classes.CardActions } >
-
-                <
-                Button variant = "contained"
-                color = "primary"
-                onClick = {
-                    () => likeJoke(joke.id)
-                } >
-                like <
-                /Button> 
-
-                <
-                Button variant = "contained"
-                color = "default"
-                onClick = {
-                    () => unlikeJoke(joke.id)
-                } >
-                unlike <
-                /Button> < /
-                CardActions > <
-                /Card>
-            ))
-        } <
-        /
-    Container > <
-        /
-    div >
+                                <Button variant = "contained" color = "default" onClick = {() => unlikeJoke(joke.id)} >
+                                    unlike 
+                                </Button> 
+                            </CardActions> 
+                    </Card>
+                ))
+            } 
+        </Container> 
+        </div>
 );
 }
 
