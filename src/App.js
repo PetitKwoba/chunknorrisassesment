@@ -1,45 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import {
     AppBar,
-    Button,
-    Card,
-    CardContent,
-    CardActions,
-    Chip,
     Container,
     Tab,
     Tabs,
     Typography,
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles} from '@material-ui/core/styles';
+import  JokeCard  from './JokeCard';
 
 const useStyles = makeStyles({
-    card: {
-        marginBottom: 20,
-    },
-    CardContent: {
-        paddingBottom: '5'
-    },
-    CardActions: {
-        padding: '15px'
-    }
+
 })
+
 
 const likeJoke = (id) => {
     console.log("uliking joke, " + id);
 }
 
-const unlikeJoke = (id) => {
-    console.log("uliking joke, " + id);
-}
 
-const Category = withStyles({
-    root: {
-        marginTop: 10,
-        marginBottom: 10
-    }
-})(Chip)
+const unlikeJoke = (id) => {
+    console.log("unliking joke, " + id);
+}
 
 function App() {
 
@@ -92,57 +75,15 @@ function App() {
             </AppBar>
 
             <div role="tabpanel" hidden={currentTab !==0}>
-                { jokesToShow.map(joke => ( 
-                        < Card key = { joke.id } className = { classes.card } > 
-                            <CardContent className = { classes.CardContent } >
-                                {joke.categories.length > 0 ? (
-                                    joke.categories.map(cat => ( 
-                                    < Category label = { cat } key = { cat } variant = "outlined" /> ))
-                                        ) : 
-                                        < Category label = "Regular" variant = "outlined"/>
-                                    }
-                        
-                                < Typography > { joke.joke } </Typography> 
-
-                            </CardContent >
-                                <CardActions className = { classes.CardActions } >
-                                    <Button variant = "contained" color = "primary"onClick = {() => likeJoke(joke.id)}>
-                                        like 
-                                    </Button> 
-
-                                    <Button variant = "contained" color = "default" onClick = {() => unlikeJoke(joke.id)} >
-                                        unlike 
-                                    </Button> 
-                                </CardActions> 
-                        </Card>
-                    ))}
+                { jokesToShow.map((joke)=> (
+                    <JokeCard key={joke.id} joke={joke} likeJoke={likeJoke} unlikeJoke={unlikeJoke}/>
+                ))}
             </div>
 
             <div role="tabpanel" hidden={currentTab !== 1}>
-            { likedJokes.map(joke => ( 
-                        < Card key = { joke.id } className = { classes.card } > 
-                            <CardContent className = { classes.CardContent } >
-                                {joke.categories.length > 0 ? (
-                                    joke.categories.map(cat => ( 
-                                    < Category label = { cat } key = { cat } variant = "outlined" /> ))
-                                        ) : 
-                                    < Category label = "Regular" variant = "outlined"/>
-                                    }
-                            < Typography > { joke.joke } </Typography> 
-
-                            </CardContent >
-                                <CardActions className = { classes.CardActions } >
-                                    <Button variant = "contained" color = "primary"onClick = {() => likeJoke(joke.id)}>
-                                        like 
-                                    </Button> 
-
-                                    <Button variant = "contained" color = "default" onClick = {() => unlikeJoke(joke.id)} >
-                                        unlike 
-                                    </Button> 
-                                </CardActions> 
-                        </Card>
-                    ))
-                    }       
+            { likedJokes.map((joke) => ( 
+                <JokeCard key={joke.id} joke={joke} likeJoke={likeJoke} unlikeJoke={unlikeJoke}/> 
+            ))}       
             </div>
              
         </Container> 
