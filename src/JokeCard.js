@@ -22,20 +22,13 @@ const Category = withStyles({
 })(Chip);
 
 
-function JokeCard({joke, likeJoke, unlikeJoke} ) {
+function JokeCard({joke, likeJoke, unlikeJoke, index} ) {
 
     const classes = useStyles();
 
-    const Category = withStyles({
-        root: {
-            marginTop:10,
-            marginBottom: 10,
-        },
-    })(Chip);
-
     return (
     
-             < Card className = { classes.card } > 
+             < Card className = { classes.card } id={`joke-${index}`} > 
                 <CardContent className = { classes.CardContent } >
                     {joke.categories.length > 0 ? (joke.categories.map(cat => ( 
                         < Category label = { cat } key = { cat } variant = "outlined" /> ))

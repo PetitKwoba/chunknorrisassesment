@@ -42,6 +42,7 @@ function App() {
                 console.log(res);
                 setJokes(res.value)
                 setJokesToShow(res.value.slice(0, 10))
+                observeElement()
             })
             .catch((err) => console.log(err));
     }, []);
@@ -61,6 +62,21 @@ function App() {
         setCurrentTab(value)
     };
 
+   const observeElement = () => {
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting === true) {
+            console.log("Reached bottom of Code")
+        }
+    },{
+        threshold: 1
+    } )
+
+    const bottomJokeId = `joke-${jokesToShow.length -1}`
+    const bottomJokeE1 = document.getElementById(bottomJokeId);
+    console.log(bottomJokeE1)
+    observer.observe(bottomJokeE1)
+   };
+
     return ( 
         <div className = "App" >
         <CssBaseline />
@@ -75,10 +91,16 @@ function App() {
             </AppBar>
 
             <div role="tabpanel" hidden={currentTab !==0}>
-                { jokesToShow.map((joke)=> (
-                    <JokeCard key={joke.id} joke={joke} likeJoke={likeJoke} unlikeJoke={unlikeJoke}/>
-                ))}
+                { jokesToShow.map((joke, index)=> {
+                return(
+                    <JokeCard key={joke.id}
+                     joke={joke}
+                     likeJoke={likeJoke}
+                     unlikeJoke={unlikeJoke}
+                     index={index}/>
+                )})}
             </div>
+                 
 
             <div role="tabpanel" hidden={currentTab !== 1}>
             { likedJokes.map((joke) => ( 
