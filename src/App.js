@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
     AppBar,
+    Badge,
     Container,
     CircularProgress,
     Tab,
@@ -142,7 +143,15 @@ const categoryMatch = (jokeCategories) =>{
             <AppBar style={{marginBottom: 20}} position="sticky" >
             <Tabs value={currentTab} onChange={changeTab} centered>
                 <Tab label= "Home" id="home-tab" arial-controls="home-panel"/>
-                <Tab label= "Likes" id="like-tab" arial-controls="likes-panel"/>    
+                <Tab label= {
+                    <Badge
+                        color="secondary"
+                        badgeContent={
+                            likedJokes.length > 0 ? likedJokes.length : null
+                        }>
+                            Likes
+                        </Badge>
+                } id="like-tab" arial-controls="likes-panel"/>    
             </Tabs> 
             </AppBar>
 
