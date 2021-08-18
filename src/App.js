@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {
     AppBar,
     Container,
+    CircularProgress,
     Tab,
     Tabs,
     Typography,
+    FormControlLabel,
+    Checkbox
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles} from '@material-ui/core/styles';
@@ -12,25 +15,36 @@ import  JokeCard  from './JokeCard';
 
 const useStyles = makeStyles({
 
-})
+});
 
+function Spinner(){
+    return(
+        <div style={{textAlign: 'center', padding: '2rem' }}>
+            <CircularProgress/>
+        </div>
+    )}
+    
 
 const likeJoke = (id) => {
     console.log("uliking joke, " + id);
-}
+};
 
 
 const unlikeJoke = (id) => {
     console.log("unliking joke, " + id);
-}
+};
 
 function App() {
 
     const [jokes, setJokes] = useState([]);
     const [jokesToShow, setJokesToShow] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [filterCategories, setFilterCategories] = useState([]);
 
     const [likedJokes, setLikedJokes] = useState([]);
     const [currentTab, setCurrentTab] = useState(0);
+
+    const[loading, setLoading] = useState([false]);
 
     const classes = useStyles();
 
@@ -42,9 +56,16 @@ function App() {
                 console.log(res);
                 setJokes(res.value)
                 setJokesToShow(res.value.slice(0, 10))
-                observeElement()
             })
             .catch((err) => console.log(err));
+
+            fetch('http://api.icndb.com/categories')
+            .then(res => res.json())
+            .then(res => {
+                setCategories(res.value);
+                setFilterCategories(res.value)
+            })
+            .catch(err => console.log(err))
     }, []);
 
     const likeJoke = (id) => {
@@ -62,26 +83,61 @@ function App() {
         setCurrentTab(value)
     };
 
-   const observeElement = () => {
+
+    const addMoreJokes = () => {
+        setLoading(true)
+        setTimeout(() => {
+        setJokesToShow(jokes.slice(0, jokesToShow.length + 10));
+        setLoading(false) 
+        }, 400);
+    };
+
+   const observeElement = (bottomJoke) => {
+       if (!bottomJoke) return;
     const observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting === true) {
-            console.log("Reached bottom of Code")
+        addMoreJokes();
+        observer.unobserve(bottomJoke);
         }
     },{
-        threshold: 1
-    } )
-
-    const bottomJokeId = `joke-${jokesToShow.length -1}`
-    const bottomJokeE1 = document.getElementById(bottomJokeId);
-    console.log(bottomJokeE1)
-    observer.observe(bottomJokeE1)
+        threshold: 1,
+    } );
+    observer.observe(bottomJoke);
    };
 
+   useEffect(() => {
+    const bottomJokeE1 = document.getElementById(
+        `joke-${jokesToShow.length -1}`    
+    );
+    observeElement(bottomJokeE1);
+}, [jokesToShow]);
+  
+const toggleCategory = (event, value) => {
+    const category = event.target.name
+
+    if(filterCategories.includes(category)){
+        {/*if category found then remove else*/}
+        const filterCategoriesCopy = [...filterCategories];
+        const categoryIndex = filterCategoriesCopy.indexOf(category);
+        filterCategoriesCopy.splice(categoryIndex, 1);
+        setFilterCategories(filterCategoriesCopy);
+        {/**Add it */}
+    } else{
+        setFilterCategories([...filterCategories, category])
+    }
+};
+
+const categoryMatch = (jokeCategories) =>{
+    for(let i = 0; i < jokeCategories.length; i++){
+        if(filterCategories.includes(jokeCategories[i])) return true
+    }
+    return false
+}
     return ( 
         <div className = "App" >
         <CssBaseline />
         <Container>
-            <Typography variant = "h1" align = "center" > Chuck Norris jokes </Typography>
+            <Typography variant = "h3" align = "center" > Chuck Norris jokes </Typography>
 
             <AppBar style={{marginBottom: 20}} position="sticky" >
             <Tabs value={currentTab} onChange={changeTab} centered>
@@ -90,15 +146,33 @@ function App() {
             </Tabs> 
             </AppBar>
 
-            <div role="tabpanel" hidden={currentTab !==0}>
+            <div role="tabpanel" hidden={currentTab !== 0}>
+                {/*Category filters */}
+                {categories.map((category) => (
+                    <FormControlLabel
+                        key={category}
+                            control ={ 
+                                <Checkbox name={category} 
+                                color="primary" 
+                                checked={filterCategories.includes}
+                                onChange={toggleCategory}/> }
+                                label={category}
+                    />
+                ))}
+                {/*Joke Cards*/}
                 { jokesToShow.map((joke, index)=> {
+                    if (joke.categories.length === 0 || 
+                        categoryMatch(joke.categories)) {
+                        
                 return(
                     <JokeCard key={joke.id}
                      joke={joke}
                      likeJoke={likeJoke}
                      unlikeJoke={unlikeJoke}
                      index={index}/>
-                )})}
+                );
+                }})}
+                {loading && Spinner}
             </div>
                  
 
