@@ -7,6 +7,7 @@ import {
     Tab,
     Tabs,
     Typography,
+    TextField,
     FormControlLabel,
     Checkbox
 } from '@material-ui/core';
@@ -45,29 +46,37 @@ function App() {
     const [likedJokes, setLikedJokes] = useState([]);
     const [currentTab, setCurrentTab] = useState(0);
 
+    const [firstName, setFirstName] = useState([]);
+    const [lastName, setlastName] = useState([]);
+
     const[loading, setLoading] = useState([false]);
 
     const classes = useStyles();
 
 
     useEffect(() => {
-        fetch('https://api.icndb.com/jokes')
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                setJokes(res.value)
-                setJokesToShow(res.value.slice(0, 10))
-            })
-            .catch((err) => console.log(err));
-
-            fetch('http://api.icndb.com/categories')
-            .then(res => res.json())
-            .then(res => {
-                setCategories(res.value);
-                setFilterCategories(res.value)
-            })
-            .catch(err => console.log(err))
+        setLoading(true)
+        fetchAndSetJokes ()
+        fetch('http://api.icndb.com/categories')
+        .then(res => res.json())
+        .then(res => {
+            setCategories(res.value);
+            setFilterCategories(res.value)
+        })
+        
+        .catch(err => console.log(err))
     }, []);
+
+    const fetchAndSetJokes = () => {
+        fetch('https://api.icndb.com/jokes')
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            setJokes(res.value)
+            setJokesToShow(res.value.slice(0, 10))
+        })
+        .catch((err) => console.log(err));
+    }
 
     const likeJoke = (id) => {
         if (likedJokes.find((j) => j.id === id)) return;
@@ -133,7 +142,12 @@ const categoryMatch = (jokeCategories) =>{
         if(filterCategories.includes(jokeCategories[i])) return true
     }
     return false
-}
+};
+
+const changeName = () => {
+    if(firstName === '' || lastName ==='') return
+    
+} 
     return ( 
         <div className = "App" >
         <CssBaseline />
@@ -156,6 +170,21 @@ const categoryMatch = (jokeCategories) =>{
             </AppBar>
 
             <div role="tabpanel" hidden={currentTab !== 0}>
+                <form onSubmit={changeName} noValidate>
+                    <TextField 
+                        id="FirstName"
+                        label="First Name"
+                        value={firstName}
+                        onChange={ e => setFirstName(e.target.value)}
+                    />
+
+                    <TextField 
+                        id="lastName"
+                        label="Last Name"
+                        value={lastName}
+                        onChange={ e => setlastName(e.target.value)}
+                    />
+                </form>
                 {/*Category filters */}
                 {categories.map((category) => (
                     <FormControlLabel
