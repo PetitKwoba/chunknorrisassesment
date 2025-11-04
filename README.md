@@ -2,6 +2,10 @@
 
 A React application that displays random Chuck Norris jokes with category filtering, favorites, and name replacement features.
 
+## 🚀 Live Demo
+
+**[View Live App](https://chunknorris-jykg.vercel.app/)**
+
 ## Features
 
 - 🎭 Random Chuck Norris jokes from the [Chuck Norris API](https://api.chucknorris.io)
@@ -50,7 +54,11 @@ The app will open at [http://localhost:3000](http://localhost:3000)
 
 ## Deployment
 
-### Vercel (Recommended)
+### Live on Vercel ✅
+
+This app is currently deployed at: **[https://chunknorris-jykg.vercel.app/](https://chunknorris-jykg.vercel.app/)**
+
+### Deploy Your Own
 
 This app is optimized for Vercel deployment:
 

@@ -1,6 +1,13 @@
 {
     "name": "chunknorris",
     "version": "0.1.0",
+    "description": "Chuck Norris Jokes App - Get random jokes with category filters",
+    "author": "Emmanuel P. Kwoba",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PetitKwoba/chunknorrisassesment.git"
+    },
+    "homepage": "https://chunknorris-jykg.vercel.app/",
     "private": true,
     "engines": {
         "node": ">=18.0.0",
