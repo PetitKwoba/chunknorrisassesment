@@ -24,6 +24,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import JokeCard from './JokeCard';
 
+// API Base URL - works in both development and production
+const API_BASE_URL = process.env.NODE_ENV === 'development' 
+    ? '' // Use proxy in development
+    : 'https://api.chucknorris.io'; // Direct API in production
+
 const useSkeletonStyles = makeStyles({
     skeleton: {
         backgroundColor: '#e0e0e0',
@@ -130,7 +135,9 @@ function App() {
 
     // Helper to fetch one random joke (optionally by category)
     const fetchRandomJoke = useCallback(async (category) => {
-        const url = category ? `/jokes/random?category=${encodeURIComponent(category)}` : '/jokes/random';
+        const url = category 
+            ? `${API_BASE_URL}/jokes/random?category=${encodeURIComponent(category)}` 
+            : `${API_BASE_URL}/jokes/random`;
         const res = await fetch(url);
         return res.json();
     }, []);
@@ -183,7 +190,7 @@ function App() {
         mountedRef.current = true;
         setLoading(true);
         fetchAndSetJokes();
-        fetch('/jokes/categories')
+        fetch(`${API_BASE_URL}/jokes/categories`)
             .then(res => res.json())
             .then(res => {
                 if (!mountedRef.current) return;

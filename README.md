@@ -1,72 +1,129 @@
-# Getting Started with Create React App
+# Chuck Norris Jokes App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that displays random Chuck Norris jokes with category filtering, favorites, and name replacement features.
+
+## Features
+
+- 🎭 Random Chuck Norris jokes from the [Chuck Norris API](https://api.chucknorris.io)
+- 🏷️ Category filtering (explicit content filtered out)
+- ❤️ Like/favorite jokes with local storage persistence
+- 🔄 Infinite scroll with "Load More" button
+- ✏️ Replace "Chuck Norris" with custom names
+- 📋 Copy jokes to clipboard
+- 📱 Fully responsive design
+- ✨ Smooth animations and transitions
+- 🎨 Material-UI components
+
+## Tech Stack
+
+- React 17.0.2
+- Material-UI 4.12.4
+- Chuck Norris API
+- Local Storage for persistence
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/PetitKwoba/chunknorrisassesment.git
+cd chunknorrisassesment
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+The app will open at [http://localhost:3000](http://localhost:3000)
+
+## Deployment
+
+### Vercel (Recommended)
+
+This app is optimized for Vercel deployment:
+
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com)
+3. Import your GitHub repository
+4. Vercel will automatically detect it's a Create React App
+5. Click "Deploy"
+
+The `vercel.json` configuration file handles:
+- SPA routing (all routes serve index.html)
+- CORS headers for API calls
+
+### GitHub Pages
+
+```bash
+npm run deploy
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Runs the app in development mode at [http://localhost:3000](http://localhost:3000)
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm run deploy`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Deploys the app to GitHub Pages
 
-### `npm run eject`
+## API Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The app automatically switches between:
+- **Development**: Uses CRA proxy (`proxy` in package.json)
+- **Production**: Direct API calls to `https://api.chucknorris.io`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+No additional configuration needed!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Developer
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Developed by [Emmanuel P. Kwoba](https://petitportfolio.netlify.app/)  
+GitHub: [PetitKwoba](https://github.com/PetitKwoba)
+
+## License
+
+This project is open source and available under the MIT License.
+
+---
+
+## Troubleshooting
+
+### White page on deployment?
+
+Make sure:
+1. The `homepage` field is removed from `package.json` (for Vercel)
+2. Or set correctly for GitHub Pages: `"homepage": "https://yourusername.github.io/repo-name/"`
+3. The `vercel.json` file exists in the root directory
+4. Environment variables are set if needed
+
+### API not working?
+
+The Chuck Norris API (`https://api.chucknorris.io`) should work without authentication. If you see CORS errors, the `vercel.json` configuration handles this in production.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# chunknorrisAPi
-# chunknorrisassesment
+- [Chuck Norris API Documentation](https://api.chucknorris.io/)
+- [Material-UI Documentation](https://v4.mui.com/)
+- [Create React App Documentation](https://create-react-app.dev/)
+- [React Documentation](https://reactjs.org/)
