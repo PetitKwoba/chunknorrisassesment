@@ -1,3 +1,13 @@
+/**
+ * JokeCard Component
+ * 
+ * Displays a single joke card with category chips, like button, and copy functionality.
+ * Memoized for performance optimization.
+ * 
+ * @component
+ * @author Emmanuel P. Kwoba
+ */
+
 import React, { useState } from 'react';
 import { Button, Card, Chip, CardContent, CardActions, Typography, IconButton, Tooltip } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -36,6 +46,16 @@ const Category = withStyles({
     },
 })(Chip);
 
+/**
+ * JokeCard functional component
+ * @param {Object} props - Component props
+ * @param {Object} props.joke - Joke object containing id, joke text, and categories
+ * @param {Function} props.likeJoke - Callback to like a joke
+ * @param {Function} props.unlikeJoke - Callback to unlike a joke
+ * @param {number} props.index - Index of the joke in the list
+ * @param {boolean} props.isLiked - Whether the joke is already liked
+ * @returns {JSX.Element} Joke card component
+ */
 function JokeCard({ joke, likeJoke, unlikeJoke, index, isLiked }) {
     const classes = useStyles();
     const [copySuccess, setCopySuccess] = useState(false);

@@ -7,6 +7,20 @@
         "type": "git",
         "url": "https://github.com/PetitKwoba/chunknorrisassesment.git"
     },
+    "bugs": {
+        "url": "https://github.com/PetitKwoba/chunknorrisassesment/issues"
+    },
+    "keywords": [
+        "chuck-norris",
+        "jokes",
+        "react",
+        "material-ui",
+        "api",
+        "entertainment",
+        "humor",
+        "web-app"
+    ],
+    "license": "MIT",
     "homepage": "https://chunknorris-jykg.vercel.app/",
     "private": true,
     "engines": {

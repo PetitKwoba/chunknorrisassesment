@@ -1,3 +1,22 @@
+/**
+ * Chuck Norris Jokes App
+ * 
+ * Main application component that displays random Chuck Norris jokes
+ * with category filtering, favorites, infinite scroll, and name replacement.
+ * 
+ * Features:
+ * - Random jokes from Chuck Norris API
+ * - Category filtering (explicit content excluded)
+ * - Like/favorite functionality with localStorage persistence
+ * - Infinite scroll with "Load More" button
+ * - Replace Chuck Norris with custom names
+ * - Copy jokes to clipboard
+ * - Responsive design with Material-UI
+ * 
+ * @author Emmanuel P. Kwoba
+ * @version 0.1.0
+ */
+
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import {
     AppBar,
@@ -48,6 +67,10 @@ const useSkeletonStyles = makeStyles({
     },
 });
 
+/**
+ * Spinner component to show loading state
+ * @returns {JSX.Element} Centered circular progress indicator
+ */
 function Spinner() {
     return (
         <div style={{ textAlign: 'center', padding: '2rem' }}>
@@ -56,6 +79,11 @@ function Spinner() {
     );
 }
 
+/**
+ * Custom skeleton loader component for jokes while loading
+ * Displays a placeholder card with animated pulse effect
+ * @returns {JSX.Element} Skeleton card with animated loading state
+ */
 // Custom skeleton loader for jokes while loading
 function JokeSkeleton() {
     const classes = useSkeletonStyles();
@@ -75,6 +103,13 @@ function JokeSkeleton() {
     );
 }
 
+/**
+ * Helper function to replace "Chuck Norris" with custom names
+ * @param {string} text - The joke text to modify
+ * @param {string} firstName - First name to replace "Chuck"
+ * @param {string} lastName - Last name to replace "Norris"
+ * @returns {string} Modified text with replaced names
+ */
 // Helper function to replace Chuck Norris with custom names
 function replaceNames(text, firstName, lastName) {
     if (!text) return '';

@@ -1,12 +1,18 @@
 # Chuck Norris Jokes App
 
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://chunknorris-jykg.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-17.0.2-blue)](https://reactjs.org/)
+[![Material-UI](https://img.shields.io/badge/Material--UI-4.12.4-blue)](https://v4.mui.com/)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://vercel.com)
+
 A React application that displays random Chuck Norris jokes with category filtering, favorites, and name replacement features.
 
 ## 🚀 Live Demo
 
 **[View Live App](https://chunknorris-jykg.vercel.app/)**
 
-## Features
+## ✨ Features
 
 - 🎭 Random Chuck Norris jokes from the [Chuck Norris API](https://api.chucknorris.io)
 - 🏷️ Category filtering (explicit content filtered out)
@@ -104,18 +110,43 @@ The app automatically switches between:
 
 No additional configuration needed!
 
-## Developer
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a PR.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Code Quality
+
+- ✅ JSDoc comments for all major functions
+- ✅ PropTypes validation
+- ✅ React.memo for performance optimization
+- ✅ Error boundary for graceful error handling
+- ✅ Accessibility (ARIA labels)
+- ✅ Unit tests with React Testing Library
+- ✅ Clean code structure and organization
+- ✅ Responsive design
+
+## 👨‍💻 Developer
 
 Developed by [Emmanuel P. Kwoba](https://petitportfolio.netlify.app/)  
 GitHub: [PetitKwoba](https://github.com/PetitKwoba)
 
-## License
+## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
 
 ---
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 ### White page on deployment?
 

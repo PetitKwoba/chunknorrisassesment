@@ -1,3 +1,13 @@
+/**
+ * ErrorBoundary Component
+ * 
+ * React error boundary that catches JavaScript errors anywhere in the child
+ * component tree and displays a fallback UI instead of crashing the app.
+ * 
+ * @component
+ * @author Emmanuel P. Kwoba
+ */
+
 import React from 'react';
 import { Container, Typography, Button } from '@material-ui/core';
 
