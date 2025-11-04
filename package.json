@@ -3,17 +3,20 @@
     "name": "chunknorris",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    },
     "dependencies": {
-        "@material-ui/core": "^4.11.2",
+        "@material-ui/core": "^4.12.4",
         "@material-ui/icons": "^4.11.3",
-        "@material-ui/lab": "^4.0.0-alpha.61",
-        "@testing-library/jest-dom": "^5.11.6",
-        "@testing-library/react": "^11.2.2",
-        "@testing-library/user-event": "^12.6.0",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^12.1.5",
+        "@testing-library/user-event": "^14.5.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "react-scripts": "^5.0.1",
-        "web-vitals": "^0.2.4"
+        "web-vitals": "^3.5.2"
     },
     "scripts": {
         "predeploy": "npm run build",
@@ -43,6 +46,6 @@
     },
     "proxy": "https://api.chucknorris.io",
     "devDependencies": {
-        "gh-pages": "^3.2.3"
+        "gh-pages": "^6.3.0"
     }
 }
